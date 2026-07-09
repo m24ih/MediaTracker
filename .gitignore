@@ -1,0 +1,32 @@
+# IDE (IntelliJ IDEA & VSCode)
+.idea/
+*.iml
+*.iws
+.vscode/
+
+# Maven & Build
+target/
+backend/target/
+*.jar
+*.war
+*.ear
+
+# Frontend (Faz 4 İçin Hazırlık)
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/.next/
+
+# OS & Environment
+.DS_Store
+.env
+*.log
+
+# Docker Volumes (Güvenlik Önlemi)
+postgres_data/
+kafka_data/
+
+# Diğer
+backend/HELP.md
+backend/mvnw
+backend/mvnw.cmd
