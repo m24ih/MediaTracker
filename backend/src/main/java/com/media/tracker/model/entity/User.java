@@ -39,6 +39,9 @@ public class User implements UserDetails {
                 .collect(Collectors.toList());
     }
 
+    public UUID getId() { return id; }
+    public String getExternalApiKey() { return externalApiKey; }
+
     @Override public String getPassword() { return password; }
     @Override public String getUsername() { return username; }
     @Override public boolean isAccountNonExpired() { return true; }
