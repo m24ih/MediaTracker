@@ -5,7 +5,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/${DB_NAME:media_db}
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: localhost:29092
   data:
     redis:
       host: localhost
