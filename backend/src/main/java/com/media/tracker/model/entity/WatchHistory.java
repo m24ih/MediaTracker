@@ -1,6 +1,7 @@
 package com.media.tracker.model.entity;
 
 import jakarta.persistence.*;
+import java.time.Instant;
 import java.util.UUID;
 
 @Entity
@@ -20,6 +21,9 @@ public class WatchHistory {
     private String status;
     private Integer score;
 
+    @Column(name = "watched_at")
+    private Instant watchedAt = Instant.now();
+
     public UUID getId() { return id; }
     public void setId(UUID id) { this.id = id; }
     public User getUser() { return user; }
@@ -30,4 +34,7 @@ public class WatchHistory {
     public void setStatus(String status) { this.status = status; }
     public Integer getScore() { return score; }
     public void setScore(Integer score) { this.score = score; }
+    public Instant getWatchedAt() { return watchedAt; }
+    public void setWatchedAt(Instant watchedAt) { this.watchedAt = watchedAt; }
 }
+
