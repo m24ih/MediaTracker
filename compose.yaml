@@ -87,6 +87,19 @@ services:
       - media-network
     restart: unless-stopped
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: media-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+    networks:
+      - media-network
+    restart: unless-stopped
+
 volumes:
   postgres_data:
   kafka_data:
