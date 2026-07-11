@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface WatchHistoryRepository extends JpaRepository<WatchHistory, UUID> {
@@ -17,4 +18,6 @@ public interface WatchHistoryRepository extends JpaRepository<WatchHistory, UUID
     long countByUserIdAndMediaType(@Param("userId") UUID userId, @Param("type") String type);
 
     boolean existsByUserIdAndMediaId(UUID userId, UUID mediaId);
+    
+    Optional<WatchHistory> findByUserIdAndMediaId(UUID userId, UUID mediaId);
 }

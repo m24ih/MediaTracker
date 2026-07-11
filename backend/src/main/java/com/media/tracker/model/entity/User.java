@@ -43,7 +43,16 @@ public class User implements UserDetails {
     public String getExternalApiKey() { return externalApiKey; }
 
     @Override public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+    
     @Override public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
+    
+    public void setExternalApiKey(String externalApiKey) { this.externalApiKey = externalApiKey; }
+    
+    public Set<Role> getRoles() { return roles; }
+    public void setRoles(Set<Role> roles) { this.roles = roles; }
+
     @Override public boolean isAccountNonExpired() { return true; }
     @Override public boolean isAccountNonLocked() { return true; }
     @Override public boolean isCredentialsNonExpired() { return true; }
