@@ -39,6 +39,9 @@ import { FormsModule } from '@angular/forms';
               @for (media of results(); track media.id) {
                 <div class="media-card">
                   <div class="card-header" [class.header-movie]="media.type === 'MOVIE'" [class.header-tv]="media.type === 'TV'">
+                    @if (media.posterUrl) {
+                      <img [src]="media.posterUrl" [alt]="media.title" class="poster-img">
+                    }
                   </div>
                   <div class="card-body">
                     <span class="badge" [class.badge-purple]="media.type === 'MOVIE'" [class.badge-blue]="media.type === 'TV'">
@@ -111,9 +114,11 @@ import { FormsModule } from '@angular/forms';
       border-color: rgba(59, 130, 246, 0.4);
     }
     
-    .card-header { height: 120px; }
+    .card-header { height: 330px; position: relative; overflow: hidden; }
     .header-movie { background: linear-gradient(to bottom, #4c1d95, #2e1065); }
     .header-tv { background: linear-gradient(to bottom, #1e3a8a, #172554); }
+    
+    .poster-img { width: 100%; height: 100%; object-fit: cover; }
     
     .card-body { padding: 16px; }
     .media-title { font-size: 1rem; font-weight: 600; color: #fff; margin: 12px 0 4px 0; }

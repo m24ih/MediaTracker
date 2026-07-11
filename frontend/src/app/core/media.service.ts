@@ -7,6 +7,7 @@ export interface MediaItem {
   title: string;
   externalId: string;
   type: 'MOVIE' | 'TV' | string;
+  posterUrl?: string;
 }
 
 export interface WatchHistoryItem {
@@ -14,6 +15,7 @@ export interface WatchHistoryItem {
   mediaId: string;
   mediaTitle: string;
   mediaType: string;
+  mediaPosterUrl?: string;
   watchedAt: string;
 }
 

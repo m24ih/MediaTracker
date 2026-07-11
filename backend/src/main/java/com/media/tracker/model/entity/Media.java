@@ -17,6 +17,9 @@ public class Media {
 
     private String type;
 
+    @Column(name = "poster_url")
+    private String posterUrl;
+
     public UUID getId() { return id; }
     public void setId(UUID id) { this.id = id; }
     public String getTitle() { return title; }
@@ -25,4 +28,6 @@ public class Media {
     public void setExternalId(String externalId) { this.externalId = externalId; }
     public String getType() { return type; }
     public void setType(String type) { this.type = type; }
+    public String getPosterUrl() { return posterUrl; }
+    public void setPosterUrl(String posterUrl) { this.posterUrl = posterUrl; }
 }

@@ -6,5 +6,6 @@ public record MediaDto(
     UUID id,
     String title,
     String externalId,
-    String type
+    String type,
+    String posterUrl
 ) {}

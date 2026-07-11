@@ -97,7 +97,7 @@ public class MediaService {
     }
 
     private MediaDto toDto(Media m) {
-        return new MediaDto(m.getId(), m.getTitle(), m.getExternalId(), m.getType());
+        return new MediaDto(m.getId(), m.getTitle(), m.getExternalId(), m.getType(), m.getPosterUrl());
     }
 
     private WatchHistoryDto toHistoryDto(WatchHistory wh) {
@@ -106,6 +106,7 @@ public class MediaService {
                 wh.getMedia().getId(),
                 wh.getMedia().getTitle(),
                 wh.getMedia().getType(),
+                wh.getMedia().getPosterUrl(),
                 wh.getWatchedAt()
         );
     }

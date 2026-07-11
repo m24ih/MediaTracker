@@ -78,6 +78,7 @@ services:
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
       - SPRING_DATA_REDIS_HOST=redis
       - SPRING_DATA_REDIS_PORT=6379
+      - TMDB_API_KEY=${TMDB_API_KEY}
     depends_on:
       - postgres
       - redis

@@ -43,7 +43,11 @@ import { DatePipe } from '@angular/common';
             <div class="horizontal-scroll">
               @for (item of recentHistory(); track item.id) {
                 <div class="activity-card">
-                  <div class="card-bg"></div>
+                  <div class="card-bg">
+                    @if (item.mediaPosterUrl) {
+                      <img [src]="item.mediaPosterUrl" [alt]="item.mediaTitle" class="poster-img-bg">
+                    }
+                  </div>
                   <div class="content">
                     <span class="badge" [class.badge-purple]="item.mediaType === 'MOVIE'" [class.badge-blue]="item.mediaType === 'TV'">
                       {{ item.mediaType }}
@@ -68,6 +72,9 @@ import { DatePipe } from '@angular/common';
               @for (media of allMedia(); track media.id) {
                 <div class="media-card">
                   <div class="card-header" [class.header-movie]="media.type === 'MOVIE'" [class.header-tv]="media.type === 'TV'">
+                    @if (media.posterUrl) {
+                      <img [src]="media.posterUrl" [alt]="media.title" class="poster-img">
+                    }
                   </div>
                   <div class="card-body">
                     <span class="badge" [class.badge-purple]="media.type === 'MOVIE'" [class.badge-blue]="media.type === 'TV'">
@@ -177,9 +184,12 @@ import { DatePipe } from '@angular/common';
       border-color: rgba(124, 58, 237, 0.4);
     }
     
-    .card-header { height: 120px; }
+    .card-header { height: 330px; position: relative; overflow: hidden; }
     .header-movie { background: linear-gradient(to bottom, #4c1d95, #2e1065); }
     .header-tv { background: linear-gradient(to bottom, #1e3a8a, #172554); }
+    
+    .poster-img { width: 100%; height: 100%; object-fit: cover; }
+    .poster-img-bg { width: 100%; height: 100%; object-fit: cover; opacity: 0.4; }
     
     .card-body { padding: 16px; }
     .media-title { font-size: 1rem; font-weight: 600; color: #fff; margin: 12px 0 4px 0; }

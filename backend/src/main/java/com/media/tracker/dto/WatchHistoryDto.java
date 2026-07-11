@@ -8,5 +8,6 @@ public record WatchHistoryDto(
     UUID mediaId,
     String mediaTitle,
     String mediaType,
+    String mediaPosterUrl,
     Instant watchedAt
 ) {}
