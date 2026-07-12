@@ -9,5 +9,8 @@ public record WatchHistoryDto(
     String mediaTitle,
     String mediaType,
     String mediaPosterUrl,
-    Instant watchedAt
+    Instant watchedAt,
+    Integer seasonNumber,
+    Integer episodeNumber,
+    String episodeTitle
 ) {}

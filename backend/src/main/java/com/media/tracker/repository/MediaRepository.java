@@ -9,6 +9,7 @@ import java.util.UUID;
 
 public interface MediaRepository extends JpaRepository<Media, UUID> {
     Optional<Media> findByExternalId(String externalId);
+    Optional<Media> findByExternalIdAndType(String externalId, String type);
     List<Media> findByTypeIgnoreCase(String type);
     List<Media> findByTitleContainingIgnoreCase(String title);
 }

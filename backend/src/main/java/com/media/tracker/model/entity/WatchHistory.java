@@ -36,5 +36,29 @@ public class WatchHistory {
     public void setScore(Integer score) { this.score = score; }
     public Instant getWatchedAt() { return watchedAt; }
     public void setWatchedAt(Instant watchedAt) { this.watchedAt = watchedAt; }
+
+    @Column(name = "import_batch_id")
+    private String importBatchId;
+
+    @Column(name = "season_number")
+    private Integer seasonNumber;
+
+    @Column(name = "episode_number")
+    private Integer episodeNumber;
+
+    @Column(name = "episode_title")
+    private String episodeTitle;
+
+    public String getImportBatchId() { return importBatchId; }
+    public void setImportBatchId(String importBatchId) { this.importBatchId = importBatchId; }
+
+    public Integer getSeasonNumber() { return seasonNumber; }
+    public void setSeasonNumber(Integer seasonNumber) { this.seasonNumber = seasonNumber; }
+
+    public Integer getEpisodeNumber() { return episodeNumber; }
+    public void setEpisodeNumber(Integer episodeNumber) { this.episodeNumber = episodeNumber; }
+
+    public String getEpisodeTitle() { return episodeTitle; }
+    public void setEpisodeTitle(String episodeTitle) { this.episodeTitle = episodeTitle; }
 }
 

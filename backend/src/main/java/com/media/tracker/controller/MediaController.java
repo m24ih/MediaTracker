@@ -51,10 +51,17 @@ public class MediaController {
         return ResponseEntity.ok(mediaService.addToWatchlist(principal.getName(), id));
     }
 
-    /** DELETE /api/v1/media/{id}/watchlist — remove from watchlist */
+    /** DELETE /api/v1/media/{id}/watchlist — remove from watchlist (entire media) */
     @DeleteMapping("/{id}/watchlist")
     public ResponseEntity<Void> removeFromWatchlist(@PathVariable UUID id, Principal principal) {
         mediaService.removeFromWatchlist(principal.getName(), id);
+        return ResponseEntity.noContent().build();
+    }
+
+    /** DELETE /api/v1/media/history/{historyId} — remove specific history item */
+    @DeleteMapping("/history/{historyId}")
+    public ResponseEntity<Void> removeHistoryItem(@PathVariable UUID historyId, Principal principal) {
+        mediaService.removeHistoryItem(principal.getName(), historyId);
         return ResponseEntity.noContent().build();
     }
 }
