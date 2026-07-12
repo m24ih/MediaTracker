@@ -23,6 +23,9 @@ import { AuthService } from '../../core/auth.service';
         <a routerLink="/history" routerLinkActive="active" class="nav-item">
           <span class="nav-icon">⏱</span> History
         </a>
+        <a routerLink="/settings" routerLinkActive="active" class="nav-item">
+          <span class="nav-icon">⚙</span> Settings
+        </a>
       </nav>
 
       <div class="bottom-section">

@@ -17,6 +17,9 @@ export interface WatchHistoryItem {
   mediaType: string;
   mediaPosterUrl?: string;
   watchedAt: string;
+  seasonNumber?: number;
+  episodeNumber?: number;
+  episodeTitle?: string;
 }
 
 export interface UserStats {
@@ -55,5 +58,9 @@ export class MediaService {
 
   removeFromWatchlist(mediaId: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${mediaId}/watchlist`);
+  }
+
+  removeHistoryItem(historyId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/history/${historyId}`);
   }
 }

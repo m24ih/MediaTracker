@@ -8,5 +8,6 @@ export const routes: Routes = [
   { path: 'dashboard', loadComponent: () => import('./features/dashboard/dashboard.component').then(m => m.DashboardComponent), canActivate: [authGuard] },
   { path: 'discover', loadComponent: () => import('./features/discover/discover.component').then(m => m.DiscoverComponent), canActivate: [authGuard] },
   { path: 'history', loadComponent: () => import('./features/history/history.component').then(m => m.HistoryComponent), canActivate: [authGuard] },
+  { path: 'settings', loadComponent: () => import('./features/settings/settings.component').then(m => m.SettingsComponent), canActivate: [authGuard] },
   { path: '**', redirectTo: 'dashboard' }
 ];
