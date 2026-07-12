@@ -11,6 +11,9 @@ import java.util.UUID;
 
 public interface WatchHistoryRepository extends JpaRepository<WatchHistory, UUID> {
 
+    @Query("SELECT w FROM WatchHistory w JOIN FETCH w.media WHERE w.user.id = :userId")
+    List<WatchHistory> findByUserId(@Param("userId") UUID userId);
+
     @Query("SELECT w FROM WatchHistory w JOIN FETCH w.media WHERE w.user.id = :userId ORDER BY w.watchedAt DESC")
     List<WatchHistory> findByUserIdOrderByWatchedAtDesc(@Param("userId") UUID userId);
 
@@ -20,4 +23,9 @@ public interface WatchHistoryRepository extends JpaRepository<WatchHistory, UUID
     boolean existsByUserIdAndMediaId(UUID userId, UUID mediaId);
     
     Optional<WatchHistory> findByUserIdAndMediaId(UUID userId, UUID mediaId);
+    
+    void deleteByImportBatchIdAndUserId(String importBatchId, UUID userId);
+    
+    @Query("SELECT w.importBatchId, COUNT(w) FROM WatchHistory w WHERE w.user.id = :userId AND w.importBatchId IS NOT NULL GROUP BY w.importBatchId")
+    List<Object[]> findImportBatchesByUserId(@Param("userId") UUID userId);
 }
