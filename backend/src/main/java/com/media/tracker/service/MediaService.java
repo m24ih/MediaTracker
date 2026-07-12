@@ -87,8 +87,17 @@ public class MediaService {
         User user = findUser(username);
         watchHistoryRepository.findByUserIdOrderByWatchedAtDesc(user.getId()).stream()
                 .filter(wh -> wh.getMedia().getId().equals(mediaId))
-                .findFirst()
-                .ifPresent(watchHistoryRepository::delete);
+                .forEach(watchHistoryRepository::delete);
+    }
+
+    @Transactional
+    public void removeHistoryItem(String username, UUID historyId) {
+        User user = findUser(username);
+        watchHistoryRepository.findById(historyId).ifPresent(wh -> {
+            if (wh.getUser().getId().equals(user.getId())) {
+                watchHistoryRepository.delete(wh);
+            }
+        });
     }
 
     private User findUser(String username) {
@@ -107,7 +116,10 @@ public class MediaService {
                 wh.getMedia().getTitle(),
                 wh.getMedia().getType(),
                 wh.getMedia().getPosterUrl(),
-                wh.getWatchedAt()
+                wh.getWatchedAt(),
+                wh.getSeasonNumber(),
+                wh.getEpisodeNumber(),
+                wh.getEpisodeTitle()
         );
     }
 }
