@@ -1,59 +1,54 @@
-# MediaTrackerUi
+# MediaTracker Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.6.
+The frontend of MediaTracker is a modern Single Page Application (SPA) built with **Angular 17+** (using the new Standalone Components paradigm and `@for`/`@if` control flow syntax). It provides a sleek, dark-themed interface specifically designed for an immersive media tracking experience.
 
-## Development server
+## 🎨 UI/UX & Design
 
-To start a local development server, run:
+- **Dark Mode First:** The application relies on a premium dark mode design system (`#0f0f1a` backgrounds, `#1e1e30` card surfaces) coupled with neon purple/blue gradients (`#7c3aed` to `#3b82f6`).
+- **Glassmorphism:** Navigation sidebars and interactive cards utilize subtle transparency and backdrop-filters to provide a modern "frosted glass" aesthetic.
+- **Smart Grouping:** The History view automatically groups TV shows into nested, expandable accordions (Show -> Season -> Episodes) while keeping Movies as flat records.
 
+## 🛠️ Setup & Installation
+
+### 1. Prerequisites
+- **Node.js** (v18.0.0 or higher recommended)
+- **NPM** (v9+ recommended)
+- **Angular CLI** (`npm install -g @angular/cli`)
+
+### 2. Installation
+Navigate into the `frontend` directory and install the required npm dependencies:
+```bash
+cd frontend
+npm install
+```
+
+### 3. API Proxy Configuration
+By default, the Angular development server expects the backend to be running on `http://localhost:8080`. 
+The API proxy is configured so that any requests going to `/api/v1/*` are automatically forwarded to the backend. You do not need to configure CORS for local development.
+
+### 4. Running the Development Server
+Run the following command to spin up the local development environment:
 ```bash
 ng serve
 ```
+Your application will be accessible at `http://localhost:4200/`. The page will automatically reload if you make changes to any source files.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 📁 Project Structure
 
-## Code scaffolding
+- `src/app/core`: Core singleton services (`AuthService`, `MediaService`, `ImportService`) and guards.
+- `src/app/features`: Standalone routed components, organized by domain:
+  - `auth`: Login/Register screens.
+  - `dashboard`: Quick stats and latest history grid.
+  - `discover`: TMDB-powered media search.
+  - `history`: Timeline of all watched items with accordion collapsing for TV shows.
+  - `settings`: CSV Import handling with real-time polling progress bars.
+- `src/app/shared/layout`: Layout components like the main Sidebar.
+- `src/styles.scss`: Global CSS resets, fonts (Inter), custom CSS properties, and shared animations.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🚀 Building for Production
 
+To compile the application for production deployment, run:
 ```bash
-ng generate component component-name
+ng build --configuration production
 ```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The build artifacts will be stored in the `dist/` directory, ready to be served by Nginx, Apache, or any static hosting provider.
