@@ -32,14 +32,9 @@ public class MediaSyncService {
 
     @Transactional
     public void processMediaEvent(WebhookPayload payload) {
-        // Gelen düz metin API Key'i DB'de şifreli durduğu için, aramadan önce şifreliyoruz (AES ECB mode deterministiktir)
-        String encryptedApiKey = encryptor.convertToDatabaseColumn(payload.userApiKey());
-
-        // Şifreli key ile kullanıcıyı bul (Repository'de manuel iterasyon yerine stream kullanıyoruz)
-        User user = userRepository.findAll().stream()
-                .filter(u -> encryptedApiKey.equals(encryptor.convertToDatabaseColumn(u.getExternalApiKey())))
-                .findFirst()
-                .orElse(null);
+        // Optional<User> kullanıyoruz ki veritabanı sorgusu stream yerine SQL katmanında (DB'de) filtrelesin.
+        // ConvertToDatabaseColumn anotasyonu, JPA tarafından findBy parametrelerine otomatik uygulanır.
+        User user = userRepository.findByExternalApiKey(payload.userApiKey()).orElse(null);
 
         if (user == null) {
             log.warn("Webhook rejected: Invalid user API Key for payload: {}", payload.title());
