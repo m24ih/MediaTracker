@@ -57,12 +57,12 @@ public class YamtrackImporter extends AbstractImporter {
         Integer episodeNumber = null;
         if (headerMap.containsKey("season_number") && !line[headerMap.get("season_number")].isEmpty()) {
             try { seasonNumber = Integer.parseInt(line[headerMap.get("season_number")]); } catch (Exception e) {
-                log.warn("Failed to parse season_number", e);
+                log.warn("Failed to parse season_number: {}", line[headerMap.get("season_number")], e);
             }
         }
         if (headerMap.containsKey("episode_number") && !line[headerMap.get("episode_number")].isEmpty()) {
             try { episodeNumber = Integer.parseInt(line[headerMap.get("episode_number")]); } catch (Exception e) {
-                log.warn("Failed to parse episode_number", e);
+                log.warn("Failed to parse episode_number: {}", line[headerMap.get("episode_number")], e);
             }
         }
 
@@ -73,7 +73,7 @@ public class YamtrackImporter extends AbstractImporter {
                 String dt = line[headerMap.get("release_datetime")].replace(" ", "T");
                 releaseDate = Instant.parse(dt);
             } catch (Exception e) {
-                log.warn("Failed to parse release_datetime", e);
+                log.warn("Failed to parse release_datetime: {}", line[headerMap.get("release_datetime")], e);
             }
         }
 
@@ -85,7 +85,7 @@ public class YamtrackImporter extends AbstractImporter {
                     watchedAt = parsedEndDate;
                 }
             } catch (Exception e) {
-                log.warn("Failed to parse end_date", e);
+                log.warn("Failed to parse end_date: {}", line[headerMap.get("end_date")], e);
             }
         } 
         
@@ -94,7 +94,7 @@ public class YamtrackImporter extends AbstractImporter {
                 String dt = line[headerMap.get("progressed_at")].replace(" ", "T");
                 watchedAt = Instant.parse(dt);
             } catch (Exception e) {
-                log.warn("Failed to parse progressed_at", e);
+                log.warn("Failed to parse progressed_at: {}", line[headerMap.get("progressed_at")], e);
             }
         }
         
@@ -103,7 +103,7 @@ public class YamtrackImporter extends AbstractImporter {
                 String dt = line[headerMap.get("created_at")].replace(" ", "T");
                 watchedAt = Instant.parse(dt);
             } catch (Exception e) {
-                log.warn("Failed to parse created_at", e);
+                log.warn("Failed to parse created_at: {}", line[headerMap.get("created_at")], e);
             }
         }
         
