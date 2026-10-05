@@ -51,12 +51,12 @@ public class TvTimeImporter extends AbstractImporter {
         Integer episodeNumber = null;
         if (headerMap.containsKey("season_number") && !line[headerMap.get("season_number")].isEmpty()) {
             try { seasonNumber = Integer.parseInt(line[headerMap.get("season_number")]); } catch (Exception e) {
-                log.warn("Failed to parse season_number: {}", line[headerMap.get("season_number")]);
+                log.warn("Failed to parse season_number: {}", line[headerMap.get("season_number")], e);
             }
         }
         if (headerMap.containsKey("episode_number") && !line[headerMap.get("episode_number")].isEmpty()) {
             try { episodeNumber = Integer.parseInt(line[headerMap.get("episode_number")]); } catch (Exception e) {
-                log.warn("Failed to parse episode_number: {}", line[headerMap.get("episode_number")]);
+                log.warn("Failed to parse episode_number: {}", line[headerMap.get("episode_number")], e);
             }
         }
 
@@ -66,7 +66,7 @@ public class TvTimeImporter extends AbstractImporter {
                 java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 watchedAt = java.time.LocalDateTime.parse(line[headerMap.get("created_at")], formatter).atZone(java.time.ZoneOffset.UTC).toInstant();
             } catch (Exception e) {
-                log.warn("Failed to parse created_at: {}", line[headerMap.get("created_at")]);
+                log.warn("Failed to parse created_at: {}", line[headerMap.get("created_at")], e);
             }
         }
         
@@ -95,7 +95,7 @@ public class TvTimeImporter extends AbstractImporter {
                 java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 watchedAt = java.time.LocalDateTime.parse(line[headerMap.get("created_at")], formatter).atZone(java.time.ZoneOffset.UTC).toInstant();
             } catch (Exception e) {
-                log.warn("Failed to parse created_at: {}", line[headerMap.get("created_at")]);
+                log.warn("Failed to parse created_at: {}", line[headerMap.get("created_at")], e);
             }
         }
         
