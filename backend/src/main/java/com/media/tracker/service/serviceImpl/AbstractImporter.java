@@ -128,6 +128,7 @@ public abstract class AbstractImporter {
             
             Map<Integer, String> epMap = new HashMap<>();
             if (response.getBody() != null && response.getBody().episodes != null) {
+                List<Episode> episodesToSave = new ArrayList<>();
                 for (TmdbEpisodeResponse ep : response.getBody().episodes) {
                     epMap.put(ep.episode_number, ep.name);
                     
@@ -136,7 +137,10 @@ public abstract class AbstractImporter {
                     dbEp.setSeasonNumber(season);
                     dbEp.setEpisodeNumber(ep.episode_number);
                     dbEp.setTitle(ep.name);
-                    episodeRepository.save(dbEp);
+                    episodesToSave.add(dbEp);
+                }
+                if (!episodesToSave.isEmpty()) {
+                    episodeRepository.saveAll(episodesToSave);
                 }
             }
             cache.seasonEpisodesMap.put(cacheKey, epMap);

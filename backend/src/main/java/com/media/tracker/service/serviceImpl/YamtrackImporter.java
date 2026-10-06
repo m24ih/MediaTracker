@@ -56,13 +56,13 @@ public class YamtrackImporter extends AbstractImporter {
         Integer seasonNumber = null;
         Integer episodeNumber = null;
         if (headerMap.containsKey("season_number") && !line[headerMap.get("season_number")].isEmpty()) {
-            try { seasonNumber = Integer.parseInt(line[headerMap.get("season_number")]); } catch(Exception e) {
-                log.warn("Failed to parse season_number", e);
+            try { seasonNumber = Integer.parseInt(line[headerMap.get("season_number")]); } catch (Exception e) {
+                log.warn("Failed to parse season_number: {}", line[headerMap.get("season_number")], e);
             }
         }
         if (headerMap.containsKey("episode_number") && !line[headerMap.get("episode_number")].isEmpty()) {
-            try { episodeNumber = Integer.parseInt(line[headerMap.get("episode_number")]); } catch(Exception e) {
-                log.warn("Failed to parse episode_number", e);
+            try { episodeNumber = Integer.parseInt(line[headerMap.get("episode_number")]); } catch (Exception e) {
+                log.warn("Failed to parse episode_number: {}", line[headerMap.get("episode_number")], e);
             }
         }
 
@@ -73,7 +73,7 @@ public class YamtrackImporter extends AbstractImporter {
                 String dt = line[headerMap.get("release_datetime")].replace(" ", "T");
                 releaseDate = Instant.parse(dt);
             } catch (Exception e) {
-                log.warn("Failed to parse release_datetime", e);
+                log.warn("Failed to parse release_datetime: {}", line[headerMap.get("release_datetime")], e);
             }
         }
 
@@ -84,8 +84,8 @@ public class YamtrackImporter extends AbstractImporter {
                 if (releaseDate == null || Math.abs(parsedEndDate.getEpochSecond() - releaseDate.getEpochSecond()) > 86400 * 7) {
                     watchedAt = parsedEndDate;
                 }
-            } catch(Exception e) {
-                log.warn("Failed to parse end_date", e);
+            } catch (Exception e) {
+                log.warn("Failed to parse end_date: {}", line[headerMap.get("end_date")], e);
             }
         } 
         
@@ -93,8 +93,8 @@ public class YamtrackImporter extends AbstractImporter {
             try { 
                 String dt = line[headerMap.get("progressed_at")].replace(" ", "T");
                 watchedAt = Instant.parse(dt);
-            } catch(Exception e) {
-                log.warn("Failed to parse progressed_at", e);
+            } catch (Exception e) {
+                log.warn("Failed to parse progressed_at: {}", line[headerMap.get("progressed_at")], e);
             }
         }
         
@@ -102,8 +102,8 @@ public class YamtrackImporter extends AbstractImporter {
             try { 
                 String dt = line[headerMap.get("created_at")].replace(" ", "T");
                 watchedAt = Instant.parse(dt);
-            } catch(Exception e) {
-                log.warn("Failed to parse created_at", e);
+            } catch (Exception e) {
+                log.warn("Failed to parse created_at: {}", line[headerMap.get("created_at")], e);
             }
         }
         
