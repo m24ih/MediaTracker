@@ -79,6 +79,7 @@ services:
       - SPRING_DATA_REDIS_HOST=redis
       - SPRING_DATA_REDIS_PORT=6379
       - TMDB_API_KEY=${TMDB_API_KEY}
+      - AES_SECRET_KEY=${AES_SECRET_KEY}
     depends_on:
       - postgres
       - redis
