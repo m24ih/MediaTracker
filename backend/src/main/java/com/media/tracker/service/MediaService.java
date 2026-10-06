@@ -8,7 +8,6 @@ import com.media.tracker.model.entity.WatchHistory;
 import com.media.tracker.repository.MediaRepository;
 import com.media.tracker.repository.UserRepository;
 import com.media.tracker.repository.WatchHistoryRepository;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
